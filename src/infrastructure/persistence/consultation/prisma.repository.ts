@@ -5,7 +5,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { Prisma } from '@prisma/client/extension';
+import { Prisma } from '@prisma/client';
 import {
     RequestStatus as PrismaRequestStatus,
     Priority as PrismaPriority,
