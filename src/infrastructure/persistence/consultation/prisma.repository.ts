@@ -5,12 +5,12 @@
 
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
+import { Prisma } from '@prisma/client/extension';
 import {
-    Prisma,
     RequestStatus as PrismaRequestStatus,
     Priority as PrismaPriority,
     SLAStatus as PrismaSLAStatus,
-} from '@prisma/client';
+} from '../../../prisma';
 
 // Domain imports
 import {

@@ -5,11 +5,11 @@
 
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
+import { Prisma } from '@prisma/client/extension';
 import {
-  Prisma,
   RequestStatus as PrismaRequestStatus,
   PaymentStatus as PrismaPaymentStatus,
-} from '@prisma/client';
+} from '../../../prisma';
 import {
   ILegalOpinionRequestRepository,
   OpinionRequestFilters,

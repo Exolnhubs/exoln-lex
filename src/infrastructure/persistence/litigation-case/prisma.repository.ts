@@ -8,7 +8,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import {
     RequestStatus as PrismaRequestStatus,
     PaymentStatus as PrismaPaymentStatus,
-} from '@prisma/client';
+} from 'src/prisma';
 import {
     ILitigationCaseRepository,
     LitigationCaseFilters,
