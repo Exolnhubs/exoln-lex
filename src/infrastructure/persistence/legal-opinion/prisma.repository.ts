@@ -430,13 +430,12 @@ export class PrismaLegalOpinionRequestRepository
 
     // Status - map domain statuses to database statuses
     if (filters.status) {
-      const dbStatuses = Array.isArray(filters.status)
-        ? filters.status.map((s) => this.mapDomainStatusToDb(s))
-        : this.mapDomainStatusToDb(filters.status);
-
-      where.status = Array.isArray(dbStatuses)
-        ? { in: dbStatuses }
-        : dbStatuses;
+      if (Array.isArray(filters.status)) {
+        const dbStatuses = filters.status.map((s) => this.mapDomainStatusToDb(s));
+        where.status = { in: dbStatuses };
+      } else {
+        where.status = this.mapDomainStatusToDb(filters.status);
+      }
     }
 
     // Payment status
