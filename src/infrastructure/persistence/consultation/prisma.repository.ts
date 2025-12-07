@@ -5,7 +5,12 @@
 
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { Prisma } from '@prisma/client';
+import {
+    Prisma,
+    RequestStatus as PrismaRequestStatus,
+    Priority as PrismaPriority,
+    SLAStatus as PrismaSLAStatus,
+} from '@prisma/client';
 
 // Domain imports
 import {
@@ -472,8 +477,8 @@ export class ConsultationRequestRepository {
 
         if (filters.status) {
             where.status = Array.isArray(filters.status)
-                ? { in: filters.status }
-                : filters.status;
+                ? { in: filters.status as PrismaRequestStatus[] }
+                : filters.status as PrismaRequestStatus;
         }
 
         if (filters.consultationType) {
@@ -484,14 +489,14 @@ export class ConsultationRequestRepository {
 
         if (filters.urgency) {
             where.urgency = Array.isArray(filters.urgency)
-                ? { in: filters.urgency }
-                : filters.urgency;
+                ? { in: filters.urgency as PrismaPriority[] }
+                : filters.urgency as PrismaPriority;
         }
 
         if (filters.slaStatus) {
             where.slaStatus = Array.isArray(filters.slaStatus)
-                ? { in: filters.slaStatus }
-                : filters.slaStatus;
+                ? { in: filters.slaStatus as PrismaSLAStatus[] }
+                : filters.slaStatus as PrismaSLAStatus;
         }
 
         if (filters.submittedFrom || filters.submittedTo) {

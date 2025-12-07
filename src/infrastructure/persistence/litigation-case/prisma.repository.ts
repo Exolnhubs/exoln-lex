@@ -6,6 +6,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
+    RequestStatus as PrismaRequestStatus,
+    PaymentStatus as PrismaPaymentStatus,
+} from '@prisma/client';
+import {
     ILitigationCaseRepository,
     LitigationCaseFilters,
     PaginationParams,
@@ -167,14 +171,14 @@ export class PrismaLitigationCaseRepository implements ILitigationCaseRepository
 
         if (filters.status) {
             if (Array.isArray(filters.status)) {
-                where.status = { in: filters.status };
+                where.status = { in: filters.status as PrismaRequestStatus[] };
             } else {
-                where.status = filters.status;
+                where.status = filters.status as PrismaRequestStatus;
             }
         }
 
         if (filters.paymentStatus) {
-            where.paymentStatus = filters.paymentStatus;
+            where.paymentStatus = filters.paymentStatus as PrismaPaymentStatus;
         }
 
         if (filters.searchTerm) {
@@ -288,14 +292,14 @@ export class PrismaLitigationCaseRepository implements ILitigationCaseRepository
 
         if (filters?.status) {
             if (Array.isArray(filters.status)) {
-                where.status = { in: filters.status };
+                where.status = { in: filters.status as PrismaRequestStatus[] };
             } else {
-                where.status = filters.status;
+                where.status = filters.status as PrismaRequestStatus;
             }
         }
 
         if (filters?.paymentStatus) {
-            where.paymentStatus = filters.paymentStatus;
+            where.paymentStatus = filters.paymentStatus as PrismaPaymentStatus;
         }
 
         return await this.prisma.litigationCase.count({ where });
@@ -314,9 +318,9 @@ export class PrismaLitigationCaseRepository implements ILitigationCaseRepository
 
         if (filters?.status) {
             if (Array.isArray(filters.status)) {
-                where.status = { in: filters.status };
+                where.status = { in: filters.status as PrismaRequestStatus[] };
             } else {
-                where.status = filters.status;
+                where.status = filters.status as PrismaRequestStatus;
             }
         }
 
