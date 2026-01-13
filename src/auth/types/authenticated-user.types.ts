@@ -55,12 +55,9 @@ export interface AuthenticatedRequest extends Request {
 /**
  * Type guard to check if request has authenticated user
  */
-export function isAuthenticated(
-  req: Request,
-): req is AuthenticatedRequest {
+export function isAuthenticated(req: Request): req is AuthenticatedRequest {
   const reqWithUser = req as AuthenticatedRequest;
   return (
-    reqWithUser.user !== undefined &&
-    typeof reqWithUser.user.sub === 'string'
+    reqWithUser.user !== undefined && typeof reqWithUser.user.sub === 'string'
   );
 }
